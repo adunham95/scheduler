@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { saveBlock } from '../../database/blockDB';
 import { colors } from '../../utils/data';
+import useModal from '../Modal/useModal';
+import { ModalContext } from '../Modal/ModalContext';
 
 export const NewBlock = () => {
+  const { handleModal } = React.useContext(ModalContext);
+  // const { handleModal } = useModal();
   const [name, setName] = useState('');
   const [timeHours, setTimeHours] = useState(0);
   const [timeMins, setTimeMins] = useState(0);
@@ -22,6 +26,7 @@ export const NewBlock = () => {
     };
 
     saveBlock(block);
+    handleModal();
   }
 
   return (
@@ -68,7 +73,7 @@ export const NewBlock = () => {
             onChange={(e) => setName(e.target.value)}
           />
         </label> */}
-        <fieldset className="col-span-6 sm:col-span-3">
+        <div className="col-span-6 sm:col-span-3">
           <label className="block text-sm font-medium text-gray-700">Color</label>
           <div>
             {
@@ -81,8 +86,15 @@ export const NewBlock = () => {
             ))
         }
           </div>
-        </fieldset>
+        </div>
         <div className="px-4 py-3 text-right sm:px-6">
+          <button
+            type="button"
+            className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 mr-2"
+            onClick={handleModal}
+          >
+            Cancel
+          </button>
           <button
             type="submit"
             className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
