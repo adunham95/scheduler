@@ -11,6 +11,19 @@ export const NewBlock = () => {
   const [timeHours, setTimeHours] = useState(0);
   const [timeMins, setTimeMins] = useState(0);
   const [selectedColor, setSelectedColor] = useState('#58595C');
+  const [dayAva, setAvaDays] = useState([]);
+
+  function setAvailableDays(day) {
+    const index = dayAva.findIndex((d) => d === day);
+    const newDays = [...dayAva];
+    console.log(index);
+    if (index >= 0) {
+      setAvaDays(newDays.filter((d) => d !== day));
+    }
+    if (index < 0) {
+      setAvaDays([...newDays, day]);
+    }
+  }
 
   function saveBlockForm(e) {
     e.preventDefault();
@@ -18,6 +31,7 @@ export const NewBlock = () => {
       name,
       locked: false,
       color: selectedColor,
+      days: dayAva,
       time: {
         hours: timeHours,
         minutes: timeMins,
@@ -73,6 +87,106 @@ export const NewBlock = () => {
             onChange={(e) => setName(e.target.value)}
           />
         </label> */}
+        <fieldset className="mt-1">
+          <legend className="text-base font-medium text-gray-900">Week Availability</legend>
+          <div className="mt-4">
+            <div className="flex items-start">
+              <div className="flex items-center h-5">
+                <input
+                  id="monday"
+                  name="monday"
+                  type="checkbox"
+                  className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                  onChange={() => setAvailableDays('Monday')}
+                />
+              </div>
+              <div className="ml-3 text-sm">
+                <label
+                  htmlFor="monday"
+                  className="font-medium text-gray-700"
+                >
+                  Monday
+                </label>
+              </div>
+            </div>
+            <div className="flex items-start">
+              <div className="flex items-center h-5">
+                <input
+                  id="tues"
+                  name="tues"
+                  type="checkbox"
+                  className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                  onChange={() => setAvailableDays('Tuesday')}
+                />
+              </div>
+              <div className="ml-3 text-sm">
+                <label
+                  htmlFor="tues"
+                  className="font-medium text-gray-700"
+                >
+                  Tuesday
+                </label>
+              </div>
+            </div>
+            <div className="flex items-start">
+              <div className="flex items-center h-5">
+                <input
+                  id="wed"
+                  name="wed"
+                  type="checkbox"
+                  className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                  onChange={() => setAvailableDays('Wednesday')}
+                />
+              </div>
+              <div className="ml-3 text-sm">
+                <label
+                  htmlFor="wed"
+                  className="font-medium text-gray-700"
+                >
+                  Wednesday
+                </label>
+              </div>
+            </div>
+            <div className="flex items-start">
+              <div className="flex items-center h-5">
+                <input
+                  id="thur"
+                  name="thur"
+                  type="checkbox"
+                  className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                  onChange={() => setAvailableDays('Thursday')}
+                />
+              </div>
+              <div className="ml-3 text-sm">
+                <label
+                  htmlFor="thur"
+                  className="font-medium text-gray-700"
+                >
+                  Thursday
+                </label>
+              </div>
+            </div>
+            <div className="flex items-start">
+              <div className="flex items-center h-5">
+                <input
+                  id="fri"
+                  name="fri"
+                  type="checkbox"
+                  className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                  onChange={() => setAvailableDays('Friday')}
+                />
+              </div>
+              <div className="ml-3 text-sm">
+                <label
+                  htmlFor="fri"
+                  className="font-medium text-gray-700"
+                >
+                  Friday
+                </label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
         <div className="col-span-6 sm:col-span-3">
           <label className="block text-sm font-medium text-gray-700">Color</label>
           <div>

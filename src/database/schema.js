@@ -5,6 +5,8 @@ export const BlockSchema = {
   name: 'Default Block',
   color: '#58595C',
   locked: false,
+  scheduled: false,
+  days: ['Monday'],
 };
 
 export const dbNames = {
