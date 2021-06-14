@@ -1,4 +1,6 @@
 import './App.css';
+import { BlockCard } from './components/Block/BlockCard';
+import { BlockList } from './components/Block/BlockList';
 import { Calender } from './components/Calender/Calender';
 import { Header } from './components/Header/Header';
 import { ModalProvider } from './components/Modal/ModalContext';
@@ -13,6 +15,8 @@ function App() {
         <main>
           <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
             <NewBlockButton />
+            {/* <BlockCard /> */}
+            <BlockList />
           </div>
         </main>
       </div>

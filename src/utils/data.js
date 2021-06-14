@@ -9,4 +9,5 @@ export const colors = [
   { name: 'Orange', color: '#FF8201' },
   { name: 'Brown', color: '#5D4037' },
   { name: 'Smokey', color: '#58595C' },
+  { name: 'Black', color: '#000000' },
 ];

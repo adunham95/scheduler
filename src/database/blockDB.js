@@ -19,4 +19,5 @@ export function getAllBlocks() {
   const meta = getFromLocal(dbNames.meta);
   const allBlocks = meta.map((id) => getFromLocal(id));
   console.log(allBlocks);
+  return allBlocks;
 }
