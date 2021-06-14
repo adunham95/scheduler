@@ -8,8 +8,6 @@ function App() {
   return (
     <ModalProvider>
       <div className="App">
-        {/* <Calender /> */}
-        {/* <NewBlock /> */}
         <NewBlockButton />
       </div>
     </ModalProvider>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { saveBlock } from '../../database/blockDB';
 import { colors } from '../../utils/data';
 
 export const NewBlock = () => {
@@ -7,9 +8,9 @@ export const NewBlock = () => {
   const [timeMins, setTimeMins] = useState(0);
   const [selectedColor, setSelectedColor] = useState('#58595C');
 
-  function saveBlock(e) {
+  function saveBlockForm(e) {
     e.preventDefault();
-    console.log('New Block', {
+    const block = {
       name,
       locked: false,
       color: selectedColor,
@@ -18,13 +19,15 @@ export const NewBlock = () => {
         minutes: timeMins,
         totalMins: (timeHours * 60) + timeMins,
       },
-    });
+    };
+
+    saveBlock(block);
   }
 
   return (
     <div>
       <form
-        onSubmit={saveBlock}
+        onSubmit={saveBlockForm}
         className="md:grid md:grid-cols-3 md:gap-6 max-w-lgw"
       >
         <h1>Create New Block</h1>
