@@ -2,9 +2,9 @@ import React from 'react';
 import { pickTextColorBasedOnBgColorSimple } from '../../utils/utils';
 
 export const BlockCard = ({ block: { color, name } }) => (
-  <div className="block align-bottom text-left overflow-hidden w-1/4 py-2 pr-2">
+  <div className="block align-bottom text-left overflow-hidden w-1/2 md:w-1/3 lg:w-1/4  py-2 pr-2">
     <div
-      className="px-4 pt-5 pb-4 sm:p-6 sm:pb-4 rounded-lg shadow-sm"
+      className="p-4  rounded-lg shadow-sm"
       style={{ backgroundColor: color }}
     >
       <div className="sm:flex sm:items-start">
