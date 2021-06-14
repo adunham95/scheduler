@@ -5,12 +5,12 @@ import { NewBlock } from './NewBlock';
 export const NewBlockButton = () => {
   const { handleModal } = useContext(ModalContext);
   return (
-    <div>
+    <div className="rounded-md shadow">
       <button
-        className="mt-6 rounded  bg-purple-700 text-purple-100 px-5 h-12"
+        className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-500 hover:bg-green-700 md:py-4 md:text-lg md:px-10"
         onClick={() => handleModal(<NewBlock />)}
       >
-        open this modal!
+        Add New Block
       </button>
     </div>
   );
