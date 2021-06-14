@@ -10,11 +10,14 @@ const arr = [
 
 export const Calender = () => {
   const rows = 5;
+  const timeIncMins = 15;
+  const timeStart = '9:45';
+  const timeEnd = '17:00';
 
   const weekdays = ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri'];
 
   const blockStyle = {
-    backgroundColor: 'purple', margin: '5px', padding: '2px', borderRadius: '7px', color: 'white',
+    backgroundColor: 'purple', padding: '2px', color: 'white', border: '1px solid green', width: '100%',
   };
   const rowStyle = {
     display: 'flex',
@@ -51,9 +54,87 @@ export const Calender = () => {
     );
   }
 
+  function generateCells() {
+    const startSplit = timeStart.split(':').map((s) => parseFloat(s));
+    const endSplit = timeEnd.split(':').map((s) => parseFloat(s));
+    const minData = {
+      start: {
+        hour: startSplit[0],
+        min: startSplit[1],
+      },
+      end: {
+        hour: endSplit[0],
+        min: endSplit[1],
+      },
+    };
+
+    const hourDiff = minData.end.hour - minData.start.hour;
+    const minDiff = minData.end.min - minData.start.min;
+    const totalMins = (hourDiff * 60) + minDiff;
+    const totalCells = totalMins / timeIncMins;
+
+    minData.diff = {
+      hours: Math.floor(totalMins / 60),
+      min: totalMins % 60,
+    };
+
+    minData.totals = {
+      mins: totalMins,
+      cells: totalCells,
+    };
+
+    console.log(minData);
+
+    return (
+      <>
+        {
+            [...Array(rows + 1)].map((_, i) => (
+              i === 0
+                ? (
+                  <div style={rowStyle}>
+                    <div style={{
+                      minWidth: '3.5em', textAlign: 'left', paddingLeft: '5px', marginRight: '5px', borderRight: '1px solid black',
+                    }}
+                    />
+                    {
+                  [...Array(totalCells)].map((c, j) => (
+                    <div
+                      style={{ ...blockStyle }}
+                    >
+                      {j}
+                    </div>
+                  ))
+                }
+                  </div>
+                )
+                : (
+                  <div style={rowStyle}>
+                    <div style={{
+                      minWidth: '3.5em', textAlign: 'left', paddingLeft: '5px', marginRight: '5px', borderRight: '1px solid black',
+                    }}
+                    >
+                      {weekdays[i - 1]}
+                    </div>
+                    {
+                  [...Array(totalCells)].map((c, j) => (
+                    <div
+                      data-index={`x:${j},y:${i}`}
+                      style={{ ...blockStyle }}
+                    />
+                  ))
+                }
+                  </div>
+                )
+            ))
+        }
+      </>
+    );
+  }
+
   return (
     <div>
-      {generateTable()}
+      {/* {generateTable()} */}
+      {generateCells()}
     </div>
   );
 };
