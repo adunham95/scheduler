@@ -6,7 +6,11 @@ export const BlockSchema = {
   color: '#58595C',
   locked: false,
   scheduled: false,
-  days: ['Monday'],
+  days: [],
+  availability: [
+    {day: "Monday", start: "11:00", end: "1300"}
+    ],
+    lengthTime: 60
 };
 
 export const dbNames = {
