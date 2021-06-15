@@ -8,7 +8,6 @@ const links = [
 ];
 
 export const Header = () => {
-  const [mobile, SetMobile] = useState(false);
   const [menuOpen, SetMenu] = useState(false);
 
   return (
