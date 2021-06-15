@@ -8,9 +8,9 @@ export const BlockSchema = {
   scheduled: false,
   days: [],
   availability: [
-    {day: "Monday", start: "11:00", end: "1300"}
-    ],
-    lengthTime: 60
+    { day: 'Monday', start: '11:00', end: '1300' },
+  ],
+  lengthTime: 60,
 };
 
 export const dbNames = {

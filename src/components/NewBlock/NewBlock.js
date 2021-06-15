@@ -40,7 +40,7 @@ export const NewBlock = () => {
     };
 
     saveBlock(block);
-    handleModal();
+    // handleModal();
   }
 
   return (

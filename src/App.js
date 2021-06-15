@@ -12,6 +12,8 @@ import { Header } from './components/Header/Header';
 import { ModalProvider } from './components/Modal/ModalContext';
 import { NewBlock } from './components/NewBlock/NewBlock';
 import { NewBlockButton } from './components/NewBlock/NewBlockButton';
+import { Settings } from './views/Settings';
+import { Dashboard } from './views/Dashboard';
 
 function App() {
   return (
@@ -22,8 +24,14 @@ function App() {
           <main>
             <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
               <Switch>
-                <Route path="/">
-                  <Home />
+                <Route
+                  exact
+                  path="/"
+                >
+                  <Dashboard />
+                </Route>
+                <Route path="/settings">
+                  <Settings />
                 </Route>
               </Switch>
             </div>
@@ -45,7 +53,6 @@ function Home() {
 
 export default App;
 
-
 /*
-Paths: dashboard, schedule, settling, 
+Paths: dashboard, schedule, settling,
 */

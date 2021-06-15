@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 
 const links = [
-  {name:"Dashboard", path: "/"},
-  {name: "Schedule", path: "/schedule"},
-  {name: "Settings", path:"/settings"},
-  ]
-
-
+  { name: 'Dashboard', path: '/' },
+  { name: 'Schedule', path: '/schedule' },
+  { name: 'Settings', path: '/settings' },
+];
 
 export const Header = () => {
   const [mobile, SetMobile] = useState(false);
