@@ -3,17 +3,15 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
 } from 'react-router-dom';
-import { BlockCard } from './components/Block/BlockCard';
 import { BlockList } from './components/Block/BlockList';
-import { Calender } from './components/Calender/Calender';
 import { Header } from './components/Header/Header';
 import { ModalProvider } from './components/Modal/ModalContext';
-import { NewBlock } from './components/NewBlock/NewBlock';
-import { NewBlockButton } from './components/NewBlock/NewBlockButton';
+import { NewBlockButton } from './components/BlockForm/NewBlockButton';
 import { Settings } from './views/Settings';
 import { Dashboard } from './views/Dashboard';
+import { Blocks } from './views/Blocks';
+import { NewBlock } from './views/NewBlock';
 
 function App() {
   return (
@@ -28,8 +26,17 @@ function App() {
             >
               <Dashboard />
             </Route>
+
             <Route path="/settings">
               <Settings />
+            </Route>
+
+            <Route path="/blocks/new">
+              <NewBlock />
+            </Route>
+
+            <Route path="/blocks">
+              <Blocks />
             </Route>
           </Switch>
         </Router>

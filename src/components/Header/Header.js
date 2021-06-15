@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 const links = [
   { name: 'Dashboard', path: '/', exact: true },
+  { name: 'Blocks', path: '/blocks' },
   { name: 'Schedule', path: '/schedule' },
   { name: 'Settings', path: '/settings' },
 ];

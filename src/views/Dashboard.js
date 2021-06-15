@@ -1,7 +1,7 @@
 import React from 'react';
 import { BlockList } from '../components/Block/BlockList';
 import { Layout } from '../components/Layout/Layout';
-import { NewBlockButton } from '../components/NewBlock/NewBlockButton';
+import { NewBlockButton } from '../components/BlockForm/NewBlockButton';
 
 export const Dashboard = () => (
   <Layout>
