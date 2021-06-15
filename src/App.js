@@ -21,21 +21,17 @@ function App() {
       <div className="App">
         <Router>
           <Header />
-          <main>
-            <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-              <Switch>
-                <Route
-                  exact
-                  path="/"
-                >
-                  <Dashboard />
-                </Route>
-                <Route path="/settings">
-                  <Settings />
-                </Route>
-              </Switch>
-            </div>
-          </main>
+          <Switch>
+            <Route
+              exact
+              path="/"
+            >
+              <Dashboard />
+            </Route>
+            <Route path="/settings">
+              <Settings />
+            </Route>
+          </Switch>
         </Router>
       </div>
     </ModalProvider>
