@@ -44,3 +44,8 @@ function Home() {
 }
 
 export default App;
+
+
+/*
+Paths: dashboard, schedule, settling, 
+*/
