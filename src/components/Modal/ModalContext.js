@@ -1,18 +1,22 @@
-import { createContext } from 'react';
-// eslint-disable-next-line import/no-cycle
-import Modal from './Modal';
-import useModal from './useModal';
+import { createContext, useContext, useState } from 'react';
 
-const ModalContext = createContext([{}, () => {}]);
+const ModalContext = createContext(null);
 
 const ModalProvider = ({ children }) => {
-  const { modal, handleModal, modalContent } = useModal();
+  const [modalID, setModalID] = useState('');
   return (
-    <ModalContext.Provider value={{ modal, handleModal, modalContent }}>
-      <Modal />
+    <ModalContext.Provider value={{ modalID, setModalID }}>
       {children}
     </ModalContext.Provider>
   );
 };
+function useModal() {
+  const context = useContext(ModalContext);
+  if (context === undefined) {
+    throw new Error('useCount must be used within a CountProvider');
+  }
+  console.log(context);
+  return context;
+}
 
-export { ModalContext, ModalProvider };
+export { ModalProvider, useModal };

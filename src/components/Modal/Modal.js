@@ -1,30 +1,35 @@
-import { useContext } from 'react';
-import { createPortal } from 'react-dom';
-// eslint-disable-next-line import/no-cycle
-import { ModalContext } from './ModalContext';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { useModal } from './ModalContext';
 
-const Modal = () => {
-  const { modalContent, handleModal, modal } = useContext(ModalContext);
-
-  if (modal) {
-    return createPortal(
+const Modal = ({ id, children }) => {
+  const { modalID, setModalID } = useModal();
+  return id === modalID ? ReactDOM.createPortal(
+    <>
       <div
-        className="fixed top-0 left-0 h-screen w-full flex items-center justify-center"
-        style={{ background: 'rgba(0,0,0,0.8)' }}
+        className="fixed top-0 left-0 h-screen w-full flex items-center justify-center bg-opacity-75 bg-black"
       >
-        <div className="bg-white relative p-5 shadow-lg rounded flex flex-col items-start text-lg text-gray-800">
-          {/* <button
-            className="absolute top-0 right-0 -mt-12 font-bold self-end rounded-full bg-red-200 mb-3 bg-white text-red-700 w-8 h-8"
-            onClick={() => handleModal()}
+        <div
+          className="relative p-5 shadow-lg rounded flex flex-col items-start text-lg text-gray-800"
+          aria-modal
+          aria-hidden
+          tabIndex={-1}
+          role="dialog"
+        >
+          <button
+            type="button"
+            className="absolute -right-2 -top-6 text-red-500 text-5xl hover:text-red-700"
+            data-dismiss="modal"
+            aria-label="Close"
+            onClick={() => setModalID('')}
           >
-            &times;
-          </button> */}
-          <p>{modalContent}</p>
+            <span aria-hidden="true">&times;</span>
+          </button>
+          {children}
         </div>
-      </div>,
-      document.querySelector('#modal-root'),
-    );
-  } return null;
+      </div>
+    </>, document.body,
+  ) : null;
 };
 
 export default Modal;

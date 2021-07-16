@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { saveBlock } from '../../database/blockDB';
 import { colors } from '../../utils/data';
-import useModal from '../Modal/useModal';
-import { ModalContext } from '../Modal/ModalContext';
+import { useModal } from '../Modal/ModalContext';
 
-export const BlockForm = () => {
-  // const { handleModal } = React.useContext(ModalContext);
-  // const { handleModal } = useModal();
+export const BlockForm = ({ close = () => {} }) => {
+  console.log(close);
   const [name, setName] = useState('');
   const [time, setTime] = useState(0);
   const [timeUnits, setTimeUnits] = useState(1);

@@ -12,6 +12,7 @@ import { Settings } from './views/Settings';
 import { Dashboard } from './views/Dashboard';
 import { Blocks } from './views/Blocks';
 import { NewBlock } from './views/NewBlock';
+import Modal from './components/Modal/Modal';
 
 function App() {
   return (
