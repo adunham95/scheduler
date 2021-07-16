@@ -1,15 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { saveBlock } from '../../database/blockDB';
 import { colors } from '../../utils/data';
-import { useModal } from '../Modal/ModalContext';
 
-export const BlockForm = ({ close = () => {} }) => {
-  console.log(close);
-  const [name, setName] = useState('');
-  const [time, setTime] = useState(0);
+const defaultBlock = {
+  id: '',
+  name: '',
+  time: 0,
+  color: '#58595C',
+  availability: [{}],
+};
+
+export const BlockForm = ({ block = defaultBlock }) => {
+  const [name, setName] = useState(block.name);
+  const [time, setTime] = useState();
   const [timeUnits, setTimeUnits] = useState(1);
-  const [selectedColor, setSelectedColor] = useState('#000000');
-  const [dayAva, setAva] = useState([{}]);
+  const [selectedColor, setSelectedColor] = useState(block.color);
+  const [dayAva, setAva] = useState(block.availability);
+
+  useEffect(() => {
+    setName(block.name);
+    setSelectedColor(block.color);
+    setAva(block.availability);
+  }, [block]);
 
   function addAva() {
     setAva([...dayAva, {}]);
@@ -24,8 +36,8 @@ export const BlockForm = ({ close = () => {} }) => {
 
   function saveBlockForm(e) {
     e.preventDefault();
-    // console.log(dayAva);
-    const block = {
+    const NewBlock = {
+      id: block.id,
       name,
       locked: false,
       color: selectedColor,
@@ -33,9 +45,9 @@ export const BlockForm = ({ close = () => {} }) => {
       time: time * timeUnits,
     };
 
-    // console.log('block', block);
+    console.log('block', NewBlock);
 
-    saveBlock(block);
+    saveBlock(NewBlock);
     // handleModal();
   }
 
@@ -62,6 +74,7 @@ export const BlockForm = ({ close = () => {} }) => {
                     className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-md sm:text-sm border-gray-300"
                     placeholder="1st Grade Reading"
                     onChange={(e) => setName(e.target.value)}
+                    value={name}
                   />
                 </div>
               </div>
@@ -107,6 +120,7 @@ export const BlockForm = ({ close = () => {} }) => {
                   id="blockLength"
                   className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pr-12 sm:text-sm border-gray-300 rounded-md"
                   placeholder="0.00"
+                  value={time}
                   onChange={(e) => setTime(e.target.value)}
                 />
                 <div className="absolute inset-y-0 right-0 flex items-center">
@@ -120,6 +134,7 @@ export const BlockForm = ({ close = () => {} }) => {
                     id="tUnits"
                     name="tUnits"
                     className="focus:ring-indigo-500 focus:border-indigo-500 h-full py-0 pl-2 pr-7 border-transparent bg-transparent text-gray-500 sm:text-sm rounded-md"
+                    value={timeUnits}
                     onChange={(e) => setTimeUnits(e.target.value)}
                   >
                     <option value={60}>Hours</option>
@@ -142,6 +157,7 @@ export const BlockForm = ({ close = () => {} }) => {
                   dayAva.map((a, i) => (
                     <AvailabilityBlock
                       index={i}
+                      data={a}
                       onChange={(d) => setDays(d, i)}
                       // eslint-disable-next-line react/no-array-index-key
                       key={`AvailabilityBlock-${i}`}
@@ -176,10 +192,10 @@ export const BlockForm = ({ close = () => {} }) => {
   );
 };
 
-function AvailabilityBlock({ onChange = () => {}, index }) {
-  const [weekday, setWeekday] = useState('Monday');
-  const [tStart, setTimeStart] = useState('');
-  const [tEnd, setTimeEnd] = useState('');
+function AvailabilityBlock({ data, onChange = () => {}, index }) {
+  const [weekday, setWeekday] = useState(data.weekday ? data.weekday : 'Monday');
+  const [tStart, setTimeStart] = useState(data.start);
+  const [tEnd, setTimeEnd] = useState(data.end);
 
   useEffect(() => {
     const avaObject = {
@@ -206,6 +222,7 @@ function AvailabilityBlock({ onChange = () => {}, index }) {
           id="weekday"
           name="weekday"
           className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          value={weekday}
           onChange={(e) => setWeekday(e.target.value)}
         >
           <option>Monday</option>
@@ -228,6 +245,7 @@ function AvailabilityBlock({ onChange = () => {}, index }) {
           name="tStart"
           id="tStart"
           className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+          value={tStart}
           onChange={(e) => setTimeStart(e.target.value)}
         />
       </div>
@@ -244,6 +262,7 @@ function AvailabilityBlock({ onChange = () => {}, index }) {
           name="tEnd"
           id="tEnd"
           className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+          value={tEnd}
           onChange={(e) => setTimeEnd(e.target.value)}
         />
       </div>

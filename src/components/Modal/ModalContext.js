@@ -15,7 +15,6 @@ function useModal() {
   if (context === undefined) {
     throw new Error('useCount must be used within a CountProvider');
   }
-  console.log(context);
   return context;
 }
 
