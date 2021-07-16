@@ -3,7 +3,7 @@ import { generateID } from '../utils/utils';
 export const BlockSchema = {
   id: generateID(),
   name: 'Default Block',
-  color: '#58595C',
+  color: '#000000',
   locked: false,
   scheduled: false,
   days: [],

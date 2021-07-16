@@ -44,15 +44,6 @@ function App() {
     </ModalProvider>
   );
 }
-function Home() {
-  return (
-    <>
-      <NewBlockButton />
-      {/* <BlockCard /> */}
-      <BlockList />
-    </>
-  );
-}
 
 export default App;
 

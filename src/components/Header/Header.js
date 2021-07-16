@@ -33,6 +33,7 @@ export const Header = () => {
                         activeClassName="bg-gray-900 text-white"
                         className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                         to={l.path}
+                        key={`Desktop-${l.name}`}
                       >
                         {l.name}
                       </NavLink>
@@ -111,6 +112,7 @@ export const Header = () => {
                   activeClassName="bg-gray-900 text-white"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                   to={l.path}
+                  key={`Mobile-${l.name}`}
                 >
                   {l.name}
                 </NavLink>

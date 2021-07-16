@@ -7,7 +7,12 @@ export const BlockList = () => {
   console.log(blockList);
   return (
     <div className="flex flex-wrap">
-      {blockList.map((b) => <BlockCard block={b} />)}
+      {blockList.map((b) => (
+        <BlockCard
+          block={b}
+          key={b.id}
+        />
+      ))}
     </div>
   );
 };
