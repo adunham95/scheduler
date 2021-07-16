@@ -13,35 +13,38 @@ import { Dashboard } from './views/Dashboard';
 import { Blocks } from './views/Blocks';
 import { NewBlock } from './views/NewBlock';
 import Modal from './components/Modal/Modal';
+import { BlockProvider } from './context/Block/BlockContext';
 
 function App() {
   return (
     <ModalProvider>
-      <div className="App">
-        <Router>
-          <Header />
-          <Switch>
-            <Route
-              exact
-              path="/"
-            >
-              <Dashboard />
-            </Route>
+      <BlockProvider>
+        <div className="App">
+          <Router>
+            <Header />
+            <Switch>
+              <Route
+                exact
+                path="/"
+              >
+                <Dashboard />
+              </Route>
 
-            <Route path="/settings">
-              <Settings />
-            </Route>
+              <Route path="/settings">
+                <Settings />
+              </Route>
 
-            <Route path="/blocks/new">
-              <NewBlock />
-            </Route>
+              <Route path="/blocks/new">
+                <NewBlock />
+              </Route>
 
-            <Route path="/blocks">
-              <Blocks />
-            </Route>
-          </Switch>
-        </Router>
-      </div>
+              <Route path="/blocks">
+                <Blocks />
+              </Route>
+            </Switch>
+          </Router>
+        </div>
+      </BlockProvider>
     </ModalProvider>
   );
 }

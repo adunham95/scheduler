@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useBlock } from '../../context/Block/BlockContext';
 import { saveBlock } from '../../database/blockDB';
 import { colors } from '../../utils/data';
 
@@ -11,6 +12,7 @@ const defaultBlock = {
 };
 
 export const BlockForm = ({ block = defaultBlock }) => {
+  const { addBlock } = useBlock();
   const [name, setName] = useState(block.name);
   const [time, setTime] = useState();
   const [timeUnits, setTimeUnits] = useState(1);
@@ -48,6 +50,7 @@ export const BlockForm = ({ block = defaultBlock }) => {
     console.log('block', NewBlock);
 
     saveBlock(NewBlock);
+    // TODO add block
     // handleModal();
   }
 
